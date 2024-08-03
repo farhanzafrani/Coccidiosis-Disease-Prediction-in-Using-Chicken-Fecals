@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-
+from src.logger.logging import Logger
 
 
 LIST_OF_FILES = [
@@ -26,17 +26,23 @@ LIST_OF_FILES = [
     "pyproject.toml",
     "setup.cfg",
     "tox.ini",
-    "experiments/experiments.ipynb"
+    "experiments/experiments.ipynb",
 ]
+
 
 def create_folder_structure(list_of_files):
     for file in list_of_files:
         file_path = Path(file)
         file_dir = file_path.parent
         if not file_dir.exists():
+            logger.info(f"Creating directory {file_dir} for file {file_path}")
             file_dir.mkdir(parents=True, exist_ok=True)
+        else:
+            logger.info(f"Directory {file_dir} already exists")
         if not file_path.exists() or file_path.stat().st_size == 0:
             file_path.touch()
+        else:
+            logger.info(f"File {file_path} already exists")
 
 
 if __name__ == "__main__":
