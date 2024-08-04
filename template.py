@@ -14,7 +14,7 @@ LIST_OF_FILES = [
     "src/pipeline/training_pipeline.py",
     "src/pipeline/prediction_pipeline.py",
     "src/utils/__init__.py",
-    "src/utils/utils.py",
+    "src/utils/common.py",
     "test/unit/__init__.py",
     "test/integration/__init__.py",
     "src/logger/logging.py",
@@ -27,6 +27,13 @@ LIST_OF_FILES = [
     "setup.cfg",
     "tox.ini",
     "experiments/experiments.ipynb",
+    "config/config.yml",
+    "src/config/__init__.py",
+    "src/config/configuration.py",
+    "src/constants/__init__.py",
+    "src/entity/__init__.py",
+    "src/entity/config_entity.py",
+    "params.yml",
 ]
 
 
@@ -35,14 +42,14 @@ def create_folder_structure(list_of_files):
         file_path = Path(file)
         file_dir = file_path.parent
         if not file_dir.exists():
-            logger.info(f"Creating directory {file_dir} for file {file_path}")
+            Logger.info(f"Creating directory {file_dir} for file {file_path}")
             file_dir.mkdir(parents=True, exist_ok=True)
         else:
-            logger.info(f"Directory {file_dir} already exists")
+            Logger.info(f"Directory {file_dir} already exists")
         if not file_path.exists() or file_path.stat().st_size == 0:
             file_path.touch()
         else:
-            logger.info(f"File {file_path} already exists")
+            Logger.info(f"File {file_path} already exists")
 
 
 if __name__ == "__main__":

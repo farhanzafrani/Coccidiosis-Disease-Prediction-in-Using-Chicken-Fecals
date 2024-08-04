@@ -15,6 +15,7 @@ tensorflow
 pylint
 black 
 pytest
+ensure
 
 
--e .
+# -e .
