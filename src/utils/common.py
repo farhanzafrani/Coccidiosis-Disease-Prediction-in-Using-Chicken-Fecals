@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import yaml
-from logger.logging import Logger
+from src.logger.logging import Logger
 import json
 import joblib
 from ensure import ensure_annotations

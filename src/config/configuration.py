@@ -1,8 +1,8 @@
-from constants import *
+from src.constants import *
 import os
 from pathlib import Path
-from utils.common import read_yaml, create_directories
-from entity.config_entity import (
+from src.utils.common import read_yaml, create_directories
+from src.entity.config_entity import (
     DataIngestionConfig,
     PrepareBaseModelConfig,
     PrepareCallbacksConfig,
@@ -38,7 +38,7 @@ class ConfigurationManager:
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model
 
-        create_directories([config.root_dir])
+        create_directories([Path(config.root_dir)])
 
         prepare_base_model_config = PrepareBaseModelConfig(
             root_dir=Path(config.root_dir),
@@ -82,6 +82,7 @@ class ConfigurationManager:
             trained_model_path=Path(training.trained_model_path),
             updated_base_model_path=Path(prepare_base_model.updated_base_model_path),
             training_data=Path(training_data),
+            learning_rate=params.LEARNING_RATE,
             params_epochs=params.EPOCHS,
             params_batch_size=params.BATCH_SIZE,
             params_is_augmentation=params.AUGMENTATION,
